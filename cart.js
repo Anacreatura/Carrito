@@ -3,6 +3,8 @@ const images = [
   "./zarigueya.jpg",
   "./capibara.jpeg",
   "./gatitos.jpg",
+  "./familiaperros.jpeg",
+  "./toro.jpg"
 
 ]
 let productos = [
@@ -34,7 +36,21 @@ let productos = [
       precio:50000,
       contador: 0
 
-  }
+  },
+  {
+    image: images[4],
+    nombre:"Familia de Perros",
+    precio:100000,
+    contador: 0
+
+},
+{
+  image: images[5],
+  nombre:"Toro",
+  precio:70000,
+  contador: 0
+
+}
 ]
 
 const peluches = document.getElementById("peluches")
@@ -43,10 +59,10 @@ for (let index = 0; index < productos.length; index++) {
   const element = productos[index];
   
   peluches.innerHTML += `
-  <div class="col">
+  <div class="col  ">
             <div class="card">
               <img src="${element.image}" class="card-img-top" alt="...">
-              <div class="card-body">
+              <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="card-title">${element.nombre}</h5>
                 <button  class="btn btn-primary ">${element.precio}</button>
               <div class="d-flex">
@@ -74,6 +90,8 @@ const totalPagar = document.getElementById("totalPagar")
 let suma = 0
 let resta = 0
 let ahorroTotal = 0
+let total= 0
+
 for (let index = 0; index < botonesDerecha.length; index++) {
   let boton = botonesDerecha[index];
   
@@ -99,26 +117,42 @@ for (let index = 0; index < botonesDerecha.length; index++) {
   }
 )
 }
+for (let i = 0; i < arrayCarrito.length; i++)
+  {
+   
+ const element = arrayCarrito[i];
+ total += element.precio
+ console.log(element);
+ 
+ 
+}
+
 
 for (let index = 0; index < botonesIzquierda.length; index++) {
   const boton2 = botonesIzquierda[index];
 
   boton2.addEventListener("click", () => {
-      productos[index].contador-=1
-      unidades[index].innerText=productos[index].contador
-      if(productos[index].contador < 0){
-          unidades[index].innerText= 0
+    if (productos[index].contador > 0) {
+      productos[index].contador -= 1;
+      unidades[index].innerText = productos[index].contador;
+      
+      suma -= productos[index].precio;
+      subtotal.innerText = suma;
+
+      if (productos[index].contador === 0) {
+        const productoIndex = arrayCarrito.indexOf(productos[index]);
+        if (productoIndex > -1) {
+          arrayCarrito.splice(productoIndex, 1);
+        }
       }
 
-      arrayCarrito.push(productos[index])
-
-      totalProductos.innerText = arrayCarrito.length
-
-      resta-= productos[index].precio
-
-      subtotal.innerText= resta
-
-  } )
-  
+      totalProductos.innerText = arrayCarrito.length;
+      
+      if (arrayCarrito.length <= 5) {
+        ahorroTotal = 0;
+        ahorro.innerText = ahorroTotal;
+      }
+      totalPagar.innerText = suma - ahorroTotal;
+    }
+  });
 }
-

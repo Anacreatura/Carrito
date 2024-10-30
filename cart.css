@@ -1,5 +1,37 @@
-.images {
+img {
     width: auto;
-    height: 120px;
+    height: 300px;
 }
 
+.card {
+    
+    border-radius: 15px;
+    box-shadow:  20px 20px 60px #bebebe,
+                 -20px -20px 60px #ffffff;
+    }
+
+body {
+    background-color: aquamarine;
+}
+
+
+.tablaa {
+    margin-left: 10px;
+    width: 600px;
+    height: 280px;
+    border: solid 1px #bebebe;
+    background-color: rgb(248, 234, 248);
+}
+
+
+
+body {
+   
+    
+      font-family: "Comfortaa", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+   
+    
+}
